@@ -1,6 +1,6 @@
 # Examen3_Lenguajes_12-11468
 
-## cambioPregunta 1
+## Pregunta 1
   * En la carpeta correspondiente a esta pregunta en el repositorio.
   * Parte a) Archivo “p1_12-11468.pdf”
   * Parte b.i) Archivo “sec_pila_cola.rb”
