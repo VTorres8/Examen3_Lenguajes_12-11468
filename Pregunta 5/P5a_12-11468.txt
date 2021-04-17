@@ -1,0 +1,42 @@
+Pregunta 5.a
+
+CORRIDA EVALUACION NORMAL
+
+takeWhile (<=3) (gen 1)
+
+foldr (\a r-> if (<=3) a then a : r else []) [] (gen 1)
+foldr (\a r-> if (<=3) a then a : r else []) [] (1 : gen (1+1))
+(\a r -> if (<=3) a then a : r else []) 1 (foldr (\a r-> if (<=3) a then a : r else []) [] gen 1+1)
+1 : foldr (\a r-> if (<=3) a then a : r else []) [] (gen 1+1)
+1 : foldr (\a r-> if (<=3) a then a : r else []) [] (gen 2)
+1 : foldr (\a r-> if (<=3) a then a : r else []) [] (2 : gen 2 + 1)
+1 : (\a r-> if (<=3) a then a : r else []) 2 (foldr (\a r-> if (<=3) a then a : r else []) [] gen 2 + 1)
+1 : 2 : foldr (\a r-> if (<=3) a then a : r else []) [] (gen 2 + 1)
+1 : 2 : foldr (\a r-> if (<=3) a then a : r else []) [] (gen 3)
+1 : 2 : foldr (\a r-> if (<=3) a then a : r else []) [] (3 : gen 3 + 1)
+1 : 2 : (\a r-> if (<=3) a then a : r else []) 3 (foldr (\a r-> if (<=3) a then a : r else []) [] gen 3 + 1)
+1 : 2 : 3 : (foldr (\a r-> if (<=3) a then a : r else []) [] (gen 3 + 1))
+1 : 2 : 3 : (foldr (\a r-> if (<=3) a then a : r else []) [] (gen 4))
+1 : 2 : 3 : (foldr (\a r-> if (<=3) a then a : r else []) [] (4 : gen 4 + 1))
+1 : 2 : 3 : (\a r-> if (<=3) a then a : r else []) 4 (foldr (\a r-> if (<=3) a then a : r else []) [] gen 4 + 1)
+1 : 2 : 3 : []
+1 : 2 : [3]
+1 : [2,3]
+[1,2,3]
+
+#######################################################################################################################################
+
+CORRIDA EVALUACION APLICATIVA
+
+takeWhile (<=3) (gen 1)
+
+takeWhile (<=3) (1 : gen 2)
+takeWhile (<=3) (1 : (2 : gen 3)))
+takeWhile (<=3) (1 : (2 : (3 : gen 4))))
+takeWhile (<=3) (1 : (2 : (3 : (4 : (gen 5 )))))
+takeWhile (<=3) (1 : (2 : (3 : (4 : (5 : (gen 6 )))))
+... Y asi continua forever :'v
+
+Esta evaluación no acaba porque como es aplicativa, prioriza la evaluación de los argumentos antes que
+la expansion de la función. Por esta razón se aplica primero la evaluación de (gen 1), luego de (gen 2)
+y asi sucesivamente. Por lo cual entonces se sigue evaluando infinitamente ese termino y no termina.

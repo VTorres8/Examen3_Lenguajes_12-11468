@@ -1,0 +1,48 @@
+Pregunta 5.c
+
+CORRIDA EVALUACION NORMAL
+
+takeWhileA (<= 3) (genA 1)
+
+foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA 1)
+foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja ( Rama 1 (genA (1 + 1)) (genA (1 * 2)))
+(\a i d -> if (<=3) a then Rama a i d else Hoja) 1 (foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA (1 + 1))) (foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA (1 * 2)))
+Rama 1 (foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA (1 + 1))) (foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA (1 * 2)))
+Rama 1 ( foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA (1 + 1)) ) ( foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA (1 * 2)) )
+Rama 1 ( foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA (2)) ) ( foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja (genA (2)) )
+Rama 1 ( foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja ( Rama 2 (genA (2 + 1)) (genA (2 * 2))) ) ( foldA (\a i d -> if (<=3) a then Rama a i d else Hoja) Hoja ( Rama 2 (genA (2 + 1)) (genA (2 * 2))) )
+
+Ok, a partir de aqui la cosa se esta poniendo candela y larga asi que para que la cosa sea mas legible por comodidad vamos a
+utilizar:
+locurita = (\a i d -> if (<=3) a then Rama a i d else Hoja)
+
+Rama 1 ( foldA locurita Hoja ( Rama 2 (genA (2 + 1)) (genA (2 * 2))) ) ( foldA locurita Hoja ( Rama 2 (genA (2 + 1)) (genA (2 * 2))) )
+Rama 1 (locurita 2 (foldA locurita Hoja (genA (2 + 1))) (foldA locurita Hoja (genA (2 * 2))) ) (locurita 2 (foldA locurita Hoja (genA (2 + 1))) (foldA locurita Hoja (genA (2 * 2))) )
+Rama 1 (Rama 2  (foldA locurita Hoja (genA (2 + 1))) (foldA locurita Hoja (genA (2 * 2)))) ) (Rama 2  (foldA locurita Hoja (genA (2 + 1))) (foldA locurita Hoja (genA (2 * 2)))) ) 
+Rama 1 (Rama 2  (foldA locurita Hoja (genA (3))) (foldA locurita Hoja (genA (4)))) ) (Rama 2  (foldA locurita Hoja (genA (3))) (foldA locurita Hoja (genA (4)))) ) 
+Rama 1 (Rama 2  (foldA locurita Hoja ( Rama 3 (genA (3 + 1)) (genA (3 * 2))) ) (foldA locurita Hoja ( Rama 4 (genA (4 + 1)) (genA (4 * 2))) ) (Rama 2  (foldA locurita Hoja ( Rama 3 (genA (3 + 1)) (genA (3 * 2))) ) (foldA locurita Hoja ( Rama 4 (genA (4 + 1)) (genA (4 * 2))) ) ) 
+Rama 1 (Rama 2  (locurita 3 (foldA locurita Hoja (genA (3 + 1))) (foldA locurita Hoja (genA (3 * 2)))) ( locurita 4 (foldA locurita Hoja (genA (4 + 1)) ) (foldA locurita Hoja (genA (4 * 2))) ) ( Rama 2  (locurita 3 (foldA locurita Hoja (genA (3 + 1))) (foldA locurita Hoja (genA (3 * 2)))) ( locurita 4 (foldA locurita Hoja (genA (4 + 1)) ) (foldA locurita Hoja (genA (4 * 2))) ) 
+Rama 1 (Rama 2  (Rama 3  (foldA locurita Hoja (genA (4))) (foldA locurita Hoja (genA (6)))) )  Hoja ) (Rama 2  (Rama 3  (foldA locurita Hoja (genA (4))) (foldA locurita Hoja (genA (6)))) )  Hoja ) 
+Rama 1 (Rama 2  (Rama 3  (foldA locurita Hoja (Rama 4 (genA (4 + 1)) (genA (4 * 2)) )) (foldA locurita Hoja (Rama 6 (genA (6 + 1)) (genA (6 * 2)) ))) )  Hoja ) (Rama 2  (Rama 3  (foldA locurita Hoja (Rama 4 (genA (4 + 1)) (genA (4 * 2)) )) (foldA locurita Hoja (Rama 6 (genA (6 + 1)) (genA (6 * 2)) ))) )  Hoja )
+Rama 1 (Rama 2  (Rama 3  (locurita 4 (foldA locurita Hoja (genA (4 + 1))) (foldA locurita Hoja (genA (4 * 2)))) (locurita 6 (foldA locurita Hoja (genA (6 + 1)) ) (foldA locurita Hoja (genA (6 * 2))) )  Hoja ) (Rama 2  (Rama 3  (locurita 4 (foldA locurita Hoja (genA (4 + 1))) (foldA locurita Hoja (genA (4 * 2)))) (locurita 6 (foldA locurita Hoja (genA (6 + 1)) ) (foldA locurita Hoja (genA (6 * 2))) )  Hoja )
+
+Y finalmente *redoblantes*
+
+Rama 1 (Rama 2  (Rama 3  Hoja  Hoja  )  Hoja ) (Rama 2  (Rama 3  Hoja  Hoja  )  Hoja )  !!!
+
+###########################################################################################################################################
+
+
+CORRIDA EVALUACION APLICATIVA
+
+takeWhileA (<=3) (genA 1)
+
+takeWhileA (<=3) ( Rama 1 (genA (2)) (genA (2)))
+takeWhileA (<=3) ( Rama 1 ( Rama 2 (genA (3)) (genA (4)) ) ( Rama 2 (genA (3)) (genA (4))))
+takeWhileA (<=3) ( Rama 1 ( Rama 2 ( Rama 3 (genA (4)) (genA (6))) ( Rama 4 (genA (5)) (genA (8))) ) ( Rama 2 ( Rama 3 (genA (4)) (genA (6))) ( Rama 4 (genA (5)) (genA (8)))))
+... Y asi continua forever :'v
+
+Esta evaluación no acaba porque como es aplicativa, prioriza la evaluación de los argumentos antes que
+la expansion de la función. Por esta razón se aplica primero la evaluación de (genA 1), luego al esta aplicar su definicion
+nos genera (genA (2)) (genA (2)) y nuevamente se priorizara la evaluacion de estos argumentos entonces se tendra que volver a aplicarl
+la definicion y asi sucesivamente. Por lo cual entonces se siguen evaluando infinitamente los gen y no termina.
