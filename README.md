@@ -1,14 +1,14 @@
 # Examen3_Lenguajes_12-11468
 
 ##Pregunta 1
-	* En la carpeta correspondiente a esta pregunta en el repositorio.
-	* Parte a) Archivo “p1_12-11468.pdf”
+  * En la carpeta correspondiente a esta pregunta en el repositorio.
+  * Parte a) Archivo “p1_12-11468.pdf”
   * Parte b.i) Archivo “sec_pila_cola.rb”
   * Parte b.ii) Archivo “grafos.rb”
 
 ## Pregunta 2
-	En la carpeta correspondiente a esta pregunta en el repositorio.
-	* Parte a) Archivo “p2_12-11468.pdf”
+En la carpeta correspondiente a esta pregunta en el repositorio.
+  * Parte a) Archivo “p2_12-11468.pdf”
   * Parte b.i) Archivo “sum_matrices.py”
   * Parte b.ii) Archivo “nro_archivos.py”
 
